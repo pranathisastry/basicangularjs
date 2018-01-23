@@ -1,0 +1,45 @@
+<!--- Making 2016-17 pages that would show all details and by entering matchday,teamname,score,date using ng-repeat to show all elements in our API-->
+<div class="container">
+<caption class="text-center">
+<h1> RECORDS OF EPL 2016- 2017</h1>
+</caption>
+<div class="col">Date:<input type="text" id="name" name="getDate" placeholder="Enter Date" ng-model="getDate">
+<span class="help-block">Enter as<em>YYYY-mm-dd</em></span></div>
+<div class="col"> search using year:<select id="btn2" ng-model="teamsearch.date"><option value="2016">2016</option><option value="2017">2017</option></select></div>
+<div class="col">Teamname:<input type="text" id="name" name="getTeamname" placeholder="Enter Teamname" ng-model="getTeamname">
+<span class="help-block">Eg: Enter as <em>Manchester United</em></span></div>
+<div class="col">Matchday:<input type="text" id="name" name="getMatchday" placeholder="Enter Matchday" ng-model="getMatchday"><span class="help-block">Eg: Enter as <em>Matchday 1</em></span></div>
+<div class="col">Score:<input type="text" id="name" name="getScore" placeholder="Enter Score" ng-model="getScore"></div>
+</div>
+<button type="button" onclick="ClearFields();">Clear</button>
+<div class="container" ng-controller='firstController as firstCtrl'>
+ <caption>
+<h3>
+{{ firstCtrl.secondName }}
+</h3>
+</caption>
+<table class="table table-responsive table-condensed">
+ <thead>
+      <tr>
+        <th>Date</th>
+        <th>Match Details</th>
+        </tr>
+    </thead>
+    <tbody ng-repeat ="items in firstCtrl.data2| filter : getMatchday">
+      <tr ng-repeat ="item in items.matches|filter : getDate | filter : getTeamname | filter : getScore">
+        <td>{{item.date}}</td>
+        <td><table><tr><td>{{items.name}}</td></tr>
+		<tr><td>{{item.team1.name}} vs {{item.team2.name}}</td></tr>
+		<tr><td>{{item.score1}} - {{item.score2}}</td></tr>
+		<tr><td ng-if="item.score1 > item.score2"> {{item.team1.name}} Win By {{item.score1-item.score2}}</td></tr>
+		<tr><td ng-if="item.score1 < item.score2"> {{item.team2.name}} Win By {{item.score2-item.score1}}</td></tr>
+		<tr><td ng-if="item.score1 == item.score2">TIE</td></tr>
+		</table></td>
+		<td><table><tr><td><button type="button" class="btn btn-primary btn-md"><a ng-href="#/match/{{ item.team1.name }}/{{ item.team2.name }}/{{ item.date }}">SUMMARY</a></button></td>
+      </tr>
+	  </table>
+	  </tr>
+    </tbody>
+  </table>
+   <p id="end">End of record. No More Record!!</p>
+</div>

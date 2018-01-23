@@ -1,0 +1,45 @@
+<!-- It would show stat details for a particular Team-->
+<div class="row" style="background-color: white" style="margin-top:100px">
+            <div  align="center">
+			<table class=table>
+          <tr><td>Enter Team Name:</td> <td><input type = "text" id="getTeamname" required ng-model="getTeamname" name="getTeamname"> <span ng-show="getTeamname.$touched && getTeamname.$invalid"><span class="help-block">Eg: Enter as <em>Everton</em></td></tr> 
+         <tr><td> Enter Year     :</td><td>  <input type = "year" id="getYear" required   ng-model="getYear"  name="getYear" placeholder="2015-16 & 2016-17"><span ng-show="getYear.$touched &&getYear.$invalid"><span class="help-block">Eg: Enter as <em>2015 or 2016</em></td></tr>
+		  </table>
+		  <input type="submit" value="SUBMIT" align="center"  ng-click="thirdCtrl.statsCheck(getTeamname,getYear)">
+		      </div>
+			  <div ng-if="getTeamname && getYear" class="col-lg-12">
+                <div class="col-lg-12" >
+                   <caption class="text-center">
+                   <h3>
+                STATISTICS ANALYSIS 
+                   </h3>
+                  </caption>
+				  </div>
+		        <div class="col-lg-12"><center>
+			    <img ng-src = "images/{{ thirdCtrl.code1 | lowercase  }}.png"  style="align:center" class="logo-team img-responsive"></center>
+			    </div>
+				 <div class="row stats-bg col-lg-12">
+				  <table class="table table-responsive table-condensed">
+				  <thead>
+                  <tr>
+				  <th>Total Played Match</th>
+                  <th>Total Score</th>
+				  <th>Total Win</th>
+                  <th>Total Loss</th>
+				  <th>Total Draw</th>
+                  <th>Win Percentage</th>
+				  <th>Loss Percentage</th>
+                  </tr></thead> 
+        <tr style="text-align:center">
+        <td>{{thirdCtrl.playedmatches}}</td>
+		<td>{{thirdCtrl.score}}</td>
+		<td>{{thirdCtrl.wins}}</td>
+		<td>{{thirdCtrl.loss}}</td>
+		<td>{{thirdCtrl.drawn}}</td>
+		<td>{{thirdCtrl.winPercent}}</td>
+		<td>{{thirdCtrl.lossPercent}}</td>
+      </tr>
+   </table>
+</div>
+</div>
+</div>
